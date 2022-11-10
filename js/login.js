@@ -33,7 +33,7 @@ form_login.addEventListener("submit",(e)=>{
                 login(val)
                 sessionStorage.setItem("valor", true)
                 break
-            }else{
+            }else{ 
                 redpace.innerHTML = `
                     <input type="password" id="form2Example27" class="form-control form-control-lg" />
                     <label class="form-label" for="form2Example27">Password</label>
