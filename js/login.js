@@ -11,6 +11,7 @@ for (let i = 0; i < localStorage.length; i++) {
     console.log("Key o clave: " + clave);
     console.log("Valor asignado: " + localStorage.getItem(clave));
 }
+
 form_login.addEventListener("submit",(e)=>{
     e.preventDefault()
     let form = e.target
@@ -18,37 +19,25 @@ form_login.addEventListener("submit",(e)=>{
         email: form.children[2].children[0].value,
         password: form.children[3].children[0].value
     }
-    console.log(usuario_login);
+    let clave = ("usuario("+usuario_login.email+")");
+
     let flag = true 
     let val = false
 
     let redpace = document.getElementById("password-check")
-    let wrongEmail = document.getElementById("email-check")
 
-    for (let i = 0; i < localStorage.length; i++) {
-        let clave = localStorage.key(i)
-        if ((JSON.parse(localStorage.getItem(clave))).email === usuario_login.email){
-            if((JSON.parse(localStorage.getItem(clave))).password === usuario_login.password){
-                val = true
-                login(val)
-                sessionStorage.setItem("valor", true)
-                break
-            }else{ 
-                redpace.innerHTML = `
-                    <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                    <label class="form-label" for="form2Example27">Password</label>
-                    <h6>Contraseña incorrecta</h6>
-                `
-                flag = false
-                break;
-            }
-        }
+if ((JSON.parse(localStorage.getItem(clave))).email === usuario_login.email){
+    if((JSON.parse(localStorage.getItem(clave))).password === usuario_login.password){
+        val = true
+        login(val)
+        sessionStorage.setItem("valor", true)
+    }else{ 
+        redpace.innerHTML = `
+            <input type="password" id="form2Example27" class="form-control form-control-lg" />
+            <label class="form-label" for="form2Example27">Password</label>
+            <h6>Contraseña o Email incorrecto</h6>
+        `
+        flag = false
     }
-    if(flag === true){
-        wrongEmail.innerHTML = `
-            <input type="email" id="form2Example17" class="form-control form-control-lg" />
-            <label class="form-label" for="form2Example17">Email address</label>
-            <h6>Email incorrecto</h6>
-    `
-    }
-})
+}
+})   

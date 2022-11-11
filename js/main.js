@@ -1,5 +1,6 @@
 let login = document.getElementsByClassName("login")[0]
-if((sessionStorage.getItem("valor")) === true){
+let value = sessionStorage.getItem("valor")
+if((value) === "true"){
     login.innerHTML = `
         <a href="#">Cuenta<a>
         `
