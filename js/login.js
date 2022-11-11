@@ -26,18 +26,22 @@ form_login.addEventListener("submit",(e)=>{
 
     let redpace = document.getElementById("password-check")
 
-if ((JSON.parse(localStorage.getItem(clave))).email === usuario_login.email){
-    if((JSON.parse(localStorage.getItem(clave))).password === usuario_login.password){
-        val = true
-        login(val)
-        sessionStorage.setItem("valor", true)
-    }else{ 
-        redpace.innerHTML = `
-            <input type="password" id="form2Example27" class="form-control form-control-lg" />
-            <label class="form-label" for="form2Example27">Password</label>
-            <h6>Contraseña o Email incorrecto</h6>
-        `
-        flag = false
-    }
+
+for (let i = 0; i < localStorage.length; i++) {
+    let clave = localStorage.key(i)
+    if(clave === ("usuario("+ usuario_login.email+")")){
+        if((JSON.parse(localStorage.getItem(clave))).password === usuario_login.password){
+            val = true
+            login(val)
+            sessionStorage.setItem("valor", true)
+        }else{ 
+            redpace.innerHTML = `
+                <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                <label class="form-label" for="form2Example27">Password</label>
+                <h6>Contraseña o Email incorrecto</h6>
+            `
+            flag = false
+        }
+        console.log(localStorage.getItem(clave))}
 }
-})   
+})
